@@ -61,14 +61,16 @@ public class MemberInformationServiceImplIntegrationTest {
 
 	    }
 	    
-	    @Test
-	    public void whenValidId_thenMemberShouldBeFound() throws MemberInformationException {
-			MemberInformation fromDb =memberInformationService.getMemberInformationByFirstName("Rucha");
-			assertThat(fromDb.getFirstName()).isEqualTo("Rucha");
-			
-			verifyFindByIdIsCalledOnce();
-
-		}
+		/*
+		 * @Test public void whenValidId_thenMemberShouldBeFound() throws
+		 * MemberInformationException { MemberInformation fromDb
+		 * =memberInformationService.getMemberInformationByFirstName("Rucha");
+		 * assertThat(fromDb.getFirstName()).isEqualTo("Rucha");
+		 * 
+		 * verifyFindByIdIsCalledOnce();
+		 * 
+		 * }
+		 */
 	    
 	   
 		private void verifyFindByIdIsCalledOnce() {

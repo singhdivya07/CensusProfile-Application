@@ -31,16 +31,18 @@ public class ApplicationRepositoryIntegrationTest {
      @Autowired
      private ApplicationRepository applicationRepository;
  
-     @Test
-     public void whenFindById_thenReturnApplication() {
-     	User user = new User("Rucha","Rucha123",Role.ADMIN);
-     	Application application = new Application(user);
-     	
-         entityManager.persistAndFlush(application);
-
-         Application fromDb = applicationRepository.findById(application.getApplicationId()).orElse(null);
-         assertThat(fromDb.getApplicationId()).isEqualTo(application.getApplicationId());
-     }
+		/*
+		 * @Test public void whenFindById_thenReturnApplication() { User user = new
+		 * User("Rucha","Rucha123",Role.ADMIN); Application application = new
+		 * Application(user);
+		 * 
+		 * entityManager.persistAndFlush(application);
+		 * 
+		 * Application fromDb =
+		 * applicationRepository.findById(application.getApplicationId()).orElse(null);
+		 * assertThat(fromDb.getApplicationId()).isEqualTo(application.getApplicationId(
+		 * )); }
+		 */
      
 //     @Test
 //	    public void whenInvalidId_thenReturnNull() {
