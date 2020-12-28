@@ -2,20 +2,21 @@ package com.capgemini.census.entity;
 public class Login {
    
    // @NotNull(message="email must not be empty")
-    private Integer Id;
+    private Integer userId;
    // @NotEmpty(message="Password must not be empty")
-    private String pass;
-	public Integer getId() {
-		return Id;
+    private String password;
+	public Integer getUserId() {
+		return userId;
 	}
-	public void setId(Integer id) {
-		Id = id;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
-	public String getPass() {
-		return pass;
+	public String getPassword() {
+		return password;
 	}
-	public void setPass(String pass) {
-		this.pass = pass;
+	public void setPassword(String password) {
+		this.password = password;
 	}
+	
 	
 }

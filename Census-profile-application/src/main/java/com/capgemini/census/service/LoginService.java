@@ -2,6 +2,7 @@ package com.capgemini.census.service;
 
 import com.capgemini.census.entity.LogOutPayload;
 import com.capgemini.census.entity.Login;
+import com.capgemini.census.entity.User;
 
 public interface LoginService {
    /**
@@ -10,7 +11,7 @@ public interface LoginService {
     * @return sign in successful
     * else throw invalid customer
     */
-    public String signIn(Login user);
+    public String signIn(User user);
 
     /**
      * Sign out 
@@ -27,7 +28,7 @@ public interface LoginService {
      * @return changed password
      */
 
-    public String changePassword(Login user, String new_password);
+    public String changePassword(User user, String new_password);
 
 
 }

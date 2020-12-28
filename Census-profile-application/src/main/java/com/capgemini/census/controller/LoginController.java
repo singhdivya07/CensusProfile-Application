@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.capgemini.census.entity.LogOutPayload;
 import com.capgemini.census.entity.Login;
+import com.capgemini.census.entity.User;
 import com.capgemini.census.exception.BaseResponse;
 import com.capgemini.census.service.LoginService;
 
@@ -23,7 +24,7 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 
-@RequestMapping("/api/login")
+@RequestMapping("/api")
 @Api(value = "User")//name of entity table instead of CustomerMaster
 public class LoginController {
 
@@ -37,7 +38,7 @@ public class LoginController {
 
 	@PostMapping("/login") 
 	@ApiOperation(value = "SignIn")
-	public ResponseEntity<?> signIn( @RequestBody Login user) {
+	public ResponseEntity<?> signIn( @RequestBody User user) {
 		String str = loginService.signIn(user);
 		BaseResponse baseResponse = new BaseResponse();
 		baseResponse.setStatusCode(1);
@@ -61,7 +62,7 @@ public class LoginController {
 
 	@PostMapping("/reset")
 	@ApiOperation(value = "Reset Password")
-	public ResponseEntity<?> changePassword( @RequestBody Login user, String new_password) {
+	public ResponseEntity<?> changePassword( @RequestBody User user, String new_password) {
 		String str =loginService.changePassword(user, new_password);
 		BaseResponse baseResponse = new BaseResponse();
 		baseResponse.setStatusCode(1);
