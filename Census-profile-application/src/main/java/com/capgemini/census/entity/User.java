@@ -68,6 +68,15 @@ public class User implements Serializable {
 //			this.application = application;
 //		}
 
+		public User(String userName, String password, Role role) {
+			// TODO Auto-generated constructor stub
+			this.userName = userName;
+			this.password = password;
+			this.role = role;
+		}
+
+
+
 		public Integer getUserId() {
 			return userId;
 		}

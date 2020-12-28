@@ -1,6 +1,5 @@
 package com.capgemini.census.service;
 
-import java.util.Date;
 import java.util.List;
 
 import com.capgemini.census.entity.User;

@@ -16,9 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.capgemini.census.entity.Application;
 import com.capgemini.census.entity.MemberInformation;
-import com.capgemini.census.exception.MemberInformationException;
-import com.capgemini.census.service.MemberInformationService;
+import com.capgemini.census.entity.User;
+import com.capgemini.census.exception.ApplicationException;
+import com.capgemini.census.exception.UserException;
+import com.capgemini.census.service.UserService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -26,74 +29,51 @@ import io.swagger.annotations.ApiOperation;
 @Api
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/api/member")
+@RequestMapping("/api")
 
 public class UserController {
+	
 	@Autowired
-	//@Qualifier(value = "productServiceSpringData")
-	private MemberInformationService memberInformationService;
-
-	//http://localhost:8081/springfox/api/member/1
-	// http://localhost:8081/api/member/
-	// add member
-	@ApiOperation(value = "Add Member",
-			consumes = "receives member object as Request body",
-			response = String.class,
-			httpMethod = "POST"
-			)
-	@PostMapping("/{id}")
-	public void addMember(@PathVariable Integer id,  @RequestBody MemberInformation memberInformation) {
+	private UserService userService;
+	
+	@PostMapping("/user")
+	public ResponseEntity<User> addUser(@RequestBody User user) 
+	{
 		try {
-			memberInformationService.addMember(memberInformation,id);
-			
-		} catch (MemberInformationException e) {
-			
+			User saved  = userService.addUser(user);
+			return new ResponseEntity<>(saved, HttpStatus.CREATED);
+		} catch (UserException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 	}
 	
-	
-	@ApiOperation(value = "Get all members",
-			response = MemberInformation.class,
-			tags = "get-all-members",			
-			httpMethod = "GET")
-	@GetMapping("/get/")
-	public ResponseEntity<List<MemberInformation>> getMemberAppDeatils() {
+	@GetMapping("/user")
+	public ResponseEntity<List<User>> getAllUserDeatils() {
 		try {
-			List<MemberInformation> memberList = memberInformationService.getAllMemberDeatils();
-			return new ResponseEntity<>(memberList, HttpStatus.OK);
-		} catch (MemberInformationException e) {
+			List<User> userList = userService.getAllUserDeatils();
+			return new ResponseEntity<>(userList, HttpStatus.OK);
+		} catch (UserException e) {
 			//log.error(e.getMessage());
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 	}
 	
-
-	@ApiOperation(value = "Get Member by Id",
-			response = MemberInformation.class,
-			tags = "get-Member",
-			consumes = "MemberId",
-			httpMethod = "GET")
 	@GetMapping("/{id}")
-	public ResponseEntity<MemberInformation> getMemberInformationById(@PathVariable Integer id) {
+	public ResponseEntity<User> getUserById(@PathVariable Integer id) {
 		try {
-			MemberInformation memberInformation = memberInformationService.getMemberInformationById(id);
+			User user = userService.getUserById(id);
 			//log.info("Product added" + product);
-			return new ResponseEntity<>(memberInformation, HttpStatus.OK);
-		} catch (MemberInformationException e) {
+			return new ResponseEntity<>(user, HttpStatus.OK);
+		} catch (UserException e) {
 			//log.error(e.getMessage());
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 	}
 	
-	@ApiOperation(value = "Delete member",
-			consumes = "member id",
-			response = String.class,
-			httpMethod = "DELETE")
 	@DeleteMapping("/{id}")
-	public String deleteMemberInformationById(@PathVariable Integer id) {
+	public String deleteUserById(@PathVariable Integer id) {
 		try {
-			Integer status = memberInformationService.deleteMemberInformationById(id);
+			Integer status = userService.deleteUserById(id);
 			if (status == 1) {
 				//log.info("user: " + id + " deleted from database");
 				return "user: " + id + " deleted from database";
@@ -102,26 +82,27 @@ public class UserController {
 				return "Unable to delete user from database";
 			}
 
-		} catch (MemberInformationException e) {
+		} catch (UserException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 	}
 
 	
-	@ApiOperation(value = "Update member",
-			consumes = "product object sent as request body",
-			response =MemberInformation.class,
+	@ApiOperation(value = "Update user",
+			consumes = "user object sent as request body",
+			response = User.class,
 			httpMethod = "PUT")
 	@PutMapping("/")
-	public ResponseEntity<MemberInformation> updateMemberInformation(@RequestBody MemberInformation memberInformation) {
+	public ResponseEntity<User> updateUser(@RequestBody User user) {
 		try {
-			MemberInformation updatedMember = memberInformationService.updateMemberInformation(memberInformation);
+			User updatedUser = userService.updateUser(user);
 			//log.info("Product: " + product.getProductId() + " updated");
-			return new ResponseEntity<>(updatedMember, HttpStatus.OK);
+			return new ResponseEntity<>(updatedUser, HttpStatus.OK);
 
-		} catch (MemberInformationException e) {
+		} catch (UserException e) {
 		//	log.error(e.getMessage());
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 	}
+
 }

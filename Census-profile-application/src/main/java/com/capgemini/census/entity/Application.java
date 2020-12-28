@@ -60,6 +60,11 @@ public class Application {
 		this.user = user;
 	}
 
+	public Application(User user) {
+		// TODO Auto-generated constructor stub
+		this.user = user;
+	}
+
 	public Integer getApplicationId() {
 		return applicationId;
 	}
