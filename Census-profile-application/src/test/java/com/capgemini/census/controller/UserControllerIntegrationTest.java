@@ -32,6 +32,11 @@ import com.capgemini.census.entity.Role;
 import com.capgemini.census.entity.User;
 import com.capgemini.census.service.UserService;
 
+/**
+ * This class tests the UserController Operations.
+ * @author HP
+ *
+ */
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, classes = CensusProfileApplication.class)
 @AutoConfigureMockMvc 

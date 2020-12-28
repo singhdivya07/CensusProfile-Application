@@ -34,6 +34,11 @@ import com.capgemini.census.entity.MemberInformation;
 import com.capgemini.census.entity.Relationship;
 import com.capgemini.census.service.MemberInformationService;
 
+/**
+ * This class tests the MemberController class.
+ * @author HP
+ *
+ */
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, classes = CensusProfileApplication.class)
 @AutoConfigureMockMvc 
