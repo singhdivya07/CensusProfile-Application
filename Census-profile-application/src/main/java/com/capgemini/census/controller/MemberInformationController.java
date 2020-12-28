@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.capgemini.census.entity.MemberInformation;
-import com.capgemini.census.entity.User;
 import com.capgemini.census.exception.MemberInformationException;
 import com.capgemini.census.service.MemberInformationService;
 

@@ -63,13 +63,14 @@ public class MemberInformationServiceImplIntegrationTest {
 	    
 	    @Test
 	    public void whenValidId_thenMemberShouldBeFound() throws MemberInformationException {
-			MemberInformation fromDb =memberInformationService.getMemberInformationById(101);
+			MemberInformation fromDb =memberInformationService.getMemberInformationByFirstName("Rucha");
 			assertThat(fromDb.getFirstName()).isEqualTo("Rucha");
 			
 			verifyFindByIdIsCalledOnce();
 
 		}
-
+	    
+	   
 		private void verifyFindByIdIsCalledOnce() {
 			Mockito.verify(memberInformationRepository,
 					VerificationModeFactory.times(1)).findById(Mockito.anyInt());
