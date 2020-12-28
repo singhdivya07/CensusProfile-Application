@@ -1,6 +1,5 @@
 package com.capgemini.census.service;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
@@ -15,10 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.capgemini.census.entity.Application;
 import com.capgemini.census.entity.MemberInformation;
-import com.capgemini.census.exception.ApplicationException;
 import com.capgemini.census.exception.MemberInformationException;
 import com.capgemini.census.repository.ApplicationRepository;
 import com.capgemini.census.repository.MemberInformationRepository;
+
 
 
 @Service(value = "MemberInformationServiceImpl")
@@ -36,9 +35,6 @@ public class MemberInformationServiceImpl implements MemberInformationService {
 			
 			Application application = applicationRepositoryImpl.findById(id).get();
 			memInfo.setApplication(application);
-			
-		
-			
 			
 			// Name validation
 			String firstName = memInfo.getFirstName();
@@ -65,31 +61,6 @@ public class MemberInformationServiceImpl implements MemberInformationService {
 			throw new MemberInformationException(e.getMessage(),e);
 		}
 
-	}
-
-	@Override
-	public MemberInformation searchMemberById(Integer memberId) throws MemberInformationException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public List<MemberInformation> searchMemberByFirstName(String firstName) throws MemberInformationException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<MemberInformation> searchMemberByLastName(String lastName) throws MemberInformationException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<MemberInformation> searchMemberByDob(Date dob) throws MemberInformationException {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -149,5 +120,17 @@ public class MemberInformationServiceImpl implements MemberInformationService {
 		}
 	}
 
+	@Override
+	public MemberInformation getMemberInformationByFirstName(String firstName) throws MemberInformationException {
+		// TODO Auto-generated method stub
+		return memberInformationRepository.findByFirstName(firstName);
+	}
 
+	@Override
+	public MemberInformation getMemberInformationByLastName(String lastName) throws MemberInformationException {
+		// TODO Auto-generated method stub
+		return memberInformationRepository.findByLastName(lastName);
+	}
+
+	
 }

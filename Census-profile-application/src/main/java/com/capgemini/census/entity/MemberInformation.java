@@ -74,19 +74,33 @@ public class MemberInformation {
 	}
 
 
-	public MemberInformation(Integer memberId, String firstName, String lastName, Integer age,
-			 String educationDetails, MaritalStatus maritalStatus, Relationship relationship) {
+	public MemberInformation(Integer memberId, String firstName, String lastName, Integer age, 
+			Gender gender , String educationDetails, MaritalStatus maritalStatus, Relationship relationship) {
 		
 		this.memberId = memberId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.age = age;
-		//this.gender = gender;
+		this.gender = gender;
 		//this.dob = dob;
 		this.educationDetails = educationDetails;
 		this.maritalStatus = maritalStatus;
 		this.relationship = relationship;
 		
+	}
+
+
+	public MemberInformation(String firstName, String lastName, int age, Gender gender, String educationDetails,
+			MaritalStatus maritalStatus, Relationship relationship) {
+		// TODO Auto-generated constructor stub
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.age = age;
+		this.gender = gender;
+		//this.dob = dob;
+		this.educationDetails = educationDetails;
+		this.maritalStatus = maritalStatus;
+		this.relationship = relationship;
 	}
 
 
