@@ -33,7 +33,7 @@ public class ApplicationRepositoryIntegrationTest {
  
      @Test
      public void whenFindById_thenReturnApplication() {
-     	User user = new User(101,"Rucha","Rucha123",Role.ADMIN);
+     	User user = new User("Rucha","Rucha123",Role.ADMIN);
      	Application application = new Application(user);
      	
          entityManager.persistAndFlush(application);

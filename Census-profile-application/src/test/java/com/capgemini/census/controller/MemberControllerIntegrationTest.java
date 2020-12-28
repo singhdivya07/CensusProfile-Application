@@ -32,8 +32,6 @@ import com.capgemini.census.entity.Gender;
 import com.capgemini.census.entity.MaritalStatus;
 import com.capgemini.census.entity.MemberInformation;
 import com.capgemini.census.entity.Relationship;
-import com.capgemini.census.entity.Role;
-import com.capgemini.census.entity.User;
 import com.capgemini.census.service.MemberInformationService;
 
 @ExtendWith(SpringExtension.class)

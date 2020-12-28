@@ -16,10 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.capgemini.census.entity.Application;
-import com.capgemini.census.entity.MemberInformation;
 import com.capgemini.census.entity.User;
-import com.capgemini.census.exception.ApplicationException;
 import com.capgemini.census.exception.UserException;
 import com.capgemini.census.service.UserService;
 
