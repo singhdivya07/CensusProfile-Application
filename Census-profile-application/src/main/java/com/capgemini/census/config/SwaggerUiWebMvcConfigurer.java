@@ -9,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 //https://springfox.github.io/springfox/docs/snapshot/
 
+
 @Component
 public class SwaggerUiWebMvcConfigurer implements WebMvcConfigurer {
   private final String baseUrl;
@@ -18,6 +19,10 @@ public class SwaggerUiWebMvcConfigurer implements WebMvcConfigurer {
     this.baseUrl = baseUrl;
   }
 
+  /**
+   * This method enables Swagger-UI 
+   * part for visual documentation.
+   */
   @Override
   public void addResourceHandlers(ResourceHandlerRegistry registry) {
     String baseUrl = StringUtils.trimTrailingCharacter(this.baseUrl, '/');

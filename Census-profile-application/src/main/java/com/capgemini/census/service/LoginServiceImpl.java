@@ -14,8 +14,10 @@ import com.capgemini.census.exception.OperationFailedException;
 import com.capgemini.census.exception.ResourceNotFound;
 import com.capgemini.census.repository.LoginRepository;
 /**
+ * This is the Implementation class that provides method to implement the sign In and
+ * Sign out operation.
  * 
- * @author Sandhya 
+ * @author HP
  *
  */
 

@@ -20,6 +20,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.ToString;
 
+/**
+ * This is the entity class that contains user details.
+ * It represents table in the database.
+ * @author HP
+ *
+ */
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
 @Table(name="user_details")

@@ -24,7 +24,12 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.ToString;
 
-
+/**
+ * It contains Application Id which is unique for a family.
+ * This class represents the table in the database.
+ * @author HP
+ *
+ */
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
 @Table(name="application")

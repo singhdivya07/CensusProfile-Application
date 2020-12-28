@@ -23,6 +23,16 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.ToString;
 
+/**
+ * 
+ * This class represents the table in the database.
+ * It contains member specific details.
+ * firstName, LastName, age, education_deatils, gender,relationship, marital_status
+ * are the attributes it contains.
+ * @author HP
+
+ *
+ */
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
 @Table(name = "member_information")

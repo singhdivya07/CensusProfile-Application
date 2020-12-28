@@ -7,7 +7,7 @@ import com.capgemini.census.entity.User;
 public interface LoginService {
    /**
     * Sign in customer
-    * @param customerMaster
+    * 
     * @return sign in successful
     * else throw invalid customer
     */
@@ -15,7 +15,7 @@ public interface LoginService {
 
     /**
      * Sign out 
-     * @param customerMaster
+     * 
      * @return sign out successful
      */
 
@@ -23,7 +23,7 @@ public interface LoginService {
     
     /**
      * Change Password
-     * @param customerMaster
+     * 
      * @param new_password
      * @return changed password
      */

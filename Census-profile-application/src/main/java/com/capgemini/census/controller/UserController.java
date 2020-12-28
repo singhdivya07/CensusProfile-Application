@@ -28,8 +28,21 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping("/api")
 
+
+/**
+ * This controller class is responsible for processing 
+ * incoming request of the client.
+ * Then, the controller invokes a business class to process business-related tasks
+ * 
+ * @author HP
+ *
+ */
+
 public class UserController {
 	
+	/**
+	 * This method adds the user into the record.
+	 */
 	@Autowired
 	private UserService userService;
 	
@@ -44,6 +57,10 @@ public class UserController {
 		}
 	}
 	
+	/**
+	 * This method displays the existing Information about the user.
+	 * @return
+	 */
 	@GetMapping("/user")
 	public ResponseEntity<List<User>> getAllUserDeatils() {
 		try {
@@ -55,6 +72,12 @@ public class UserController {
 		}
 	}
 	
+	/**
+	 * This method displays the existing Information about the user, 
+	 * for the specified Id.
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<User> getUserById(@PathVariable Integer id) {
 		try {
@@ -66,6 +89,12 @@ public class UserController {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 	}
+	
+	/**
+	 * This method removes the user from the record, specified by the Id.
+	 * @param id
+	 * @return
+	 */
 	
 	@DeleteMapping("/{id}")
 	public String deleteUserById(@PathVariable Integer id) {
@@ -84,7 +113,11 @@ public class UserController {
 		}
 	}
 
-	
+	/**
+	 * This method updates user details.
+	 * @param user
+	 * @return
+	 */
 	@ApiOperation(value = "Update user",
 			consumes = "user object sent as request body",
 			response = User.class,

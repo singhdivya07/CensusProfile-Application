@@ -16,9 +16,13 @@ import com.capgemini.census.service.LoginService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+
 /**
+ * This controller class is responsible for processing 
+ * incoming request of the client.
+ * Then, the controller invokes a business class to process business-related tasks
  * 
- * @author Sandhya
+ * @author HP
  *
  */
 
@@ -34,7 +38,11 @@ public class LoginController {
 	private LoginService loginService;
 
 
-
+/**
+ * Sign In function is performed by this method.
+ * @param 
+ * @return
+ */
 
 	@PostMapping("/login") 
 	@ApiOperation(value = "SignIn")
@@ -48,6 +56,11 @@ public class LoginController {
 
 
 
+	/**
+	 * Sign out is performed by this method.
+	 * @param user
+	 * @return
+	 */
 	@PostMapping("/logout") 
 	@ApiOperation(value = "SignOut")
 	public ResponseEntity<?> signOut( @RequestBody LogOutPayload user) {
@@ -59,6 +72,12 @@ public class LoginController {
 	}
 
 
+	/**
+	 * This method resets the password for login.
+	 * @param user the Id for which you want to reset the password.
+	 * @param new_password The new password , user wants to set.
+	 * @return
+	 */
 
 	@PostMapping("/reset")
 	@ApiOperation(value = "Reset Password")

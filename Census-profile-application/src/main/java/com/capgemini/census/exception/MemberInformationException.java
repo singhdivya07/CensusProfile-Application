@@ -1,5 +1,10 @@
 package com.capgemini.census.exception;
-
+/**
+ * This class is for user defined exception. 
+ * It handles the member Information Exception.
+ * @author HP
+ *
+ */
 public class MemberInformationException extends Exception
 {
 	private String message;

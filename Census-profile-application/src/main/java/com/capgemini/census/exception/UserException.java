@@ -1,5 +1,11 @@
 package com.capgemini.census.exception;
 
+/**
+* This class is for user defined exception. 
+* It handles the User Exception and displays appropriate message.
+* @author HP
+*
+*/
 public class UserException extends Exception{
 	private String message;
 

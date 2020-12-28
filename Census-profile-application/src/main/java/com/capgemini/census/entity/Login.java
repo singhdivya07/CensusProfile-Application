@@ -1,4 +1,11 @@
 package com.capgemini.census.entity;
+
+
+/**
+ * This class contains userId and password to log in to the application.
+ * @author HP
+ *
+ */
 public class Login {
    
    // @NotNull(message="email must not be empty")

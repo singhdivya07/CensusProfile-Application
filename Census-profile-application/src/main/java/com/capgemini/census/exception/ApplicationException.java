@@ -1,5 +1,10 @@
 package com.capgemini.census.exception;
 
+/**
+ * 
+ * @author HP
+ *
+ */
 public class ApplicationException extends Exception{
 	private String message;
 

@@ -23,6 +23,16 @@ import com.capgemini.census.service.MemberInformationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+
+/**
+ * This controller class is responsible for processing 
+ * incoming request of the client.
+ * Then, the controller invokes a business class to process business-related tasks
+ * 
+ * @author HP
+ *
+ */
+
 @Api
 @CrossOrigin(origins = "*")
 @RestController
@@ -36,6 +46,14 @@ public class MemberInformationController {
 	//http://localhost:8081/springfox/api/member/1
 	// http://localhost:8081/api/member/
 	// add member
+	
+	/**
+	 * This method adds the member to the application.
+	 * @param id
+	 * @param memberInformation
+	 * @return
+	 */
+	
 	@ApiOperation(value = "Add Member",
 			consumes = "receives member object as Request body",
 			response = String.class,
@@ -54,7 +72,10 @@ public class MemberInformationController {
 		}
 	}
 	
-	
+	/**
+	 * This method returns the details of all the members in the application.
+	 * @return
+	 */
 	@ApiOperation(value = "Get all members",
 			response = MemberInformation.class,
 			tags = "get-all-members",			
@@ -70,6 +91,11 @@ public class MemberInformationController {
 		}
 	}
 	
+	/**
+	 * This method returns the member information for the specified Id.
+	 * @param id
+	 * @return
+	 */
 
 	@ApiOperation(value = "Get Member by Id",
 			response = MemberInformation.class,
@@ -88,6 +114,11 @@ public class MemberInformationController {
 		}
 	}
 	
+	/**
+	 * This method deletes the member Information from the record.
+	 * @param id Id for which the information is to be deleted.
+	 * @return
+	 */
 	@ApiOperation(value = "Delete member",
 			consumes = "member id",
 			response = String.class,
@@ -109,6 +140,11 @@ public class MemberInformationController {
 		}
 	}
 
+	/**
+	 * This method updates the member information as requested by the user.
+	 * @param memberInformation
+	 * @return
+	 */
 	
 	@ApiOperation(value = "Update member",
 			consumes = "product object sent as request body",

@@ -1,0 +1,8 @@
+com.capgemini.census.aspect
+com.capgemini.census.Censusprofileapplication
+com.capgemini.census.config
+com.capgemini.census.controller
+com.capgemini.census.entity
+com.capgemini.census.exception
+com.capgemini.census.repository
+com.capgemini.census.service

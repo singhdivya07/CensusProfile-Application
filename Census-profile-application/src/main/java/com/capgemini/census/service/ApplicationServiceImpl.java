@@ -16,10 +16,24 @@ import com.capgemini.census.exception.ApplicationException;
 import com.capgemini.census.repository.ApplicationRepository;
 import com.capgemini.census.repository.UserRepository;
 
+/**
+ * This is the Implementation class.
+ * This class defines the application's boundary 
+ * and its set of available operations from the perspective of
+ *  interfacing client layers. It encapsulates the application's 
+ * business logic, controlling transactions and co-ordinating 
+ * responses in the implementation of its operations.
+ * 
+ * @author HP
+ *
+ */
 @Service(value = "ApplicationServiceImpl")
 @Transactional
 public class ApplicationServiceImpl implements ApplicationService{
 	
+	/**
+	 * This method adds the application to the database.
+	 */
 	@Autowired
 	ApplicationRepository applicationRepositoryImpl;
 	@Autowired
@@ -39,6 +53,9 @@ public class ApplicationServiceImpl implements ApplicationService{
 		
 	}
 	
+	/*
+	 * This method returns application details that exists in the database.
+	 */
 	@Override
 	public List<Application> getAllAppDeatils() throws ApplicationException {
 		try {
@@ -52,6 +69,9 @@ public class ApplicationServiceImpl implements ApplicationService{
 		}
 	}
 
+	/**
+	 * The method returns the application details as requested by passing the Id.
+	 */
 	@Override
 	public Application getApplicationById(Integer id) throws ApplicationException {
 		try {

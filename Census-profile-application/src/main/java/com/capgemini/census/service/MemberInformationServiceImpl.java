@@ -18,7 +18,17 @@ import com.capgemini.census.exception.MemberInformationException;
 import com.capgemini.census.repository.ApplicationRepository;
 import com.capgemini.census.repository.MemberInformationRepository;
 
-
+/**
+ * This is the Implementation class.
+ * This class defines the application's boundary 
+ * and its set of available operations from the perspective of
+ *  interfacing client layers. It encapsulates the application's 
+ * business logic, controlling transactions and co-ordinating 
+ * responses in the implementation of its operations.
+ * 
+ * @author HP
+ *
+ */
 
 @Service(value = "MemberInformationServiceImpl")
 @Transactional

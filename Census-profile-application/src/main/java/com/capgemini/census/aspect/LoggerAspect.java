@@ -10,6 +10,13 @@ import org.springframework.context.annotation.Configuration;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * This class records unusual circumstances or errors that may be happening in the program.
+ * It gets the information about what is going on in the application.
+ * 
+ * @author HP
+ *
+ */
 @Aspect
 @Configuration
 @Slf4j
