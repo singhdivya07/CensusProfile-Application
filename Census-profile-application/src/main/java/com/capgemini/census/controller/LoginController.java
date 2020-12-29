@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capgemini.census.entity.LogOutPayload;
-import com.capgemini.census.entity.Login;
 import com.capgemini.census.entity.User;
 import com.capgemini.census.exception.BaseResponse;
 import com.capgemini.census.service.LoginService;
@@ -29,7 +28,7 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 
 @RequestMapping("/api")
-@Api(value = "User")//name of entity table instead of CustomerMaster
+@Api(value = "User")   
 public class LoginController {
 
 

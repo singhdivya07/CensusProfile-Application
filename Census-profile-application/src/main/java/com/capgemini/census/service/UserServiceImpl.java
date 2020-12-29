@@ -10,9 +10,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.capgemini.census.entity.MemberInformation;
 import com.capgemini.census.entity.User;
-import com.capgemini.census.exception.MemberInformationException;
 import com.capgemini.census.exception.UserException;
 import com.capgemini.census.repository.UserRepository;
 

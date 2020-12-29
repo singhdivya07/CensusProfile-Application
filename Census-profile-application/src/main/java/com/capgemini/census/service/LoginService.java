@@ -1,7 +1,6 @@
 package com.capgemini.census.service;
 
 import com.capgemini.census.entity.LogOutPayload;
-import com.capgemini.census.entity.Login;
 import com.capgemini.census.entity.User;
 
 public interface LoginService {

@@ -35,20 +35,20 @@ import com.capgemini.census.repository.MemberInformationRepository;
 public class MemberInformationServiceImpl implements MemberInformationService {
 	@Autowired
 	private MemberInformationRepository memberInformationRepository ;
-	
 	@Autowired
 	ApplicationRepository applicationRepositoryImpl;
 
 	// @Override
 	public MemberInformation addMember(MemberInformation memInfo,Integer id) throws MemberInformationException {
 		try {
-			
+
 			Application application = applicationRepositoryImpl.findById(id).get();
 			memInfo.setApplication(application);
-			
+
 			// Name validation
 			String firstName = memInfo.getFirstName();
 			String lastName = memInfo.getLastName();
+			
 			// Regex to check valid username.
 			String regex = "^[A-Za-z]{2,30}[\\s'*-]*[A-Za-z]*$";
 
@@ -56,11 +56,16 @@ public class MemberInformationServiceImpl implements MemberInformationService {
 			Matcher m = p.matcher(firstName);
 			Matcher m1 = p.matcher(lastName);
 
+		
 			if ((m.matches()) && (m1.matches())) {
+				
 				// Age validation
-				if (memInfo.getAge() < 125)
+				if (memInfo.getAge() < 125) {
+					
 					return memberInformationRepository.save(memInfo);
 					
+				}
+
 				else {
 					throw new MemberInformationException("Age cannot be greater than 125 yrs");
 				}
@@ -142,5 +147,5 @@ public class MemberInformationServiceImpl implements MemberInformationService {
 		return memberInformationRepository.findByLastName(lastName);
 	}
 
-	
+
 }

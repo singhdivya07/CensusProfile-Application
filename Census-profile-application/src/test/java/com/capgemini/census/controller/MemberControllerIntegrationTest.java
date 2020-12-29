@@ -6,7 +6,6 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -16,7 +15,6 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mockito;
 import org.mockito.internal.verification.VerificationModeFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -55,26 +53,7 @@ public class MemberControllerIntegrationTest {
     }
     
     
-	/*
-	 * @Test public void whenPostMember_thenCreateMember() throws Exception {
-	 * 
-	 * 
-	 * MemberInformation member = new MemberInformation(1,"Rucha","Sheth",22
-	 * ,Gender.FEMALE,"BE",MaritalStatus.UNMARRIED,Relationship.DAUGHTER);
-	 * 
-	 * given(memberInformationService.addMember(Mockito.any(),
-	 * 1)).willReturn(member);
-	 * 
-	 * mvc.perform(post("/api/member/1").contentType(MediaType.APPLICATION_JSON).
-	 * content(JsonUtil.toJson(member)))
-	 * .andExpect(status().isCreated()).andExpect(jsonPath("$.firstName",
-	 * is("Rucha")));
-	 * 
-	 * verify(memberInformationService, VerificationModeFactory.times(1))
-	 * .addMember(Mockito.any(),1);
-	 * 
-	 * reset(memberInformationService); }
-	 */
+	
     @Test
     public void givenUsers_whenGetMembers_thenReturnJsonArray() throws Exception {
     
@@ -103,3 +82,28 @@ public class MemberControllerIntegrationTest {
     }
 
 }
+
+
+
+
+
+/*
+ * @Test 
+ * public void whenPostMember_thenCreateMember() throws Exception {
+ * 
+ * MemberInformation member = new MemberInformation(1,"Rucha","Sheth",22
+ * ,Gender.FEMALE,"BE",MaritalStatus.UNMARRIED,Relationship.DAUGHTER);
+ * 
+ * given(memberInformationService.addMember(Mockito.any(),
+ * 1)).willReturn(member);
+ * 
+ * mvc.perform(post("/api/member/1").contentType(MediaType.APPLICATION_JSON).
+ * content(JsonUtil.toJson(member)))
+ * .andExpect(status().isCreated()).andExpect(jsonPath("$.firstName",
+ * is("Rucha")));
+ * 
+ * verify(memberInformationService, VerificationModeFactory.times(1))
+ * .addMember(Mockito.any(),1);
+ * 
+ * reset(memberInformationService); }
+ */

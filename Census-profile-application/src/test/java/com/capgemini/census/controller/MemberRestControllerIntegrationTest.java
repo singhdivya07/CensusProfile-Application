@@ -1,17 +1,13 @@
 package com.capgemini.census.controller;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -53,22 +49,7 @@ public class MemberRestControllerIntegrationTest {
 	    @AfterEach
 	    public void resetDb() {
 	        repository.deleteAll();
-	    }
-	    
-		/*
-		 * @Test public void whenValidInput_thenCreateEmployee() throws Exception {
-		 * MemberInformation member = new MemberInformation(1,"meena","Sheth",22
-		 * ,Gender.FEMALE,"BE",MaritalStatus.UNMARRIED,Relationship.DAUGHTER);
-		 * 
-		 * mvc.perform(post("/api/member").contentType(MediaType.APPLICATION_JSON).
-		 * content(JsonUtil.toJson(member)));
-		 * 
-		 * List<MemberInformation> found = repository.findAll();
-		 * assertThat(found).extracting(MemberInformation::getFirstName).containsOnly(
-		 * "meena"); }
-		 */
-
-	    
+	    }  
 	    @Test
 	    public void givenEmployees_whenGetEmployees_thenStatus200() throws Exception {
 	        createTestmember("Rucha","Sheth",22
@@ -91,19 +72,22 @@ public class MemberRestControllerIntegrationTest {
 	        MemberInformation mem = new MemberInformation(firstName,lastName,age,gender,educationDetails,maritalStatus,relationship);
 	        repository.saveAndFlush(mem);
 	    }    
-	    
-
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
+	    	    
 
 }
+
+
+
+
+/*
+ * @Test public void whenValidInput_thenCreateEmployee() throws Exception {
+ * MemberInformation member = new MemberInformation(1,"meena","Sheth",22
+ * ,Gender.FEMALE,"BE",MaritalStatus.UNMARRIED,Relationship.DAUGHTER);
+ * 
+ * mvc.perform(post("/api/member").contentType(MediaType.APPLICATION_JSON).
+ * content(JsonUtil.toJson(member)));
+ * 
+ * List<MemberInformation> found = repository.findAll();
+ * assertThat(found).extracting(MemberInformation::getFirstName).containsOnly(
+ * "meena"); }
+ */

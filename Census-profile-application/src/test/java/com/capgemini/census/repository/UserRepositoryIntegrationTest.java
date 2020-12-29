@@ -28,48 +28,48 @@ import com.capgemini.census.entity.User;
 @DirtiesContext
 public class UserRepositoryIntegrationTest {
 
-	 @Autowired
-     private TestEntityManager entityManager;
+	@Autowired
+	private TestEntityManager entityManager;
 
-     @Autowired
-     private UserRepository userRepository;
-     
-     @BeforeEach
-     public void resetDb() {
-         userRepository.deleteAll();
-     }
-     
-     @Test
-     public void whenFindById_thenReturnUser() {
-     	User user = new User("Rucha","Rucha123",Role.ADMIN);
-         entityManager.persistAndFlush(user);
+	@Autowired
+	private UserRepository userRepository;
 
-         User fromDb = userRepository.findById(user.getUserId()).orElse(null);
-         assertThat(fromDb.getUserName()).isEqualTo(user.getUserName());
-     }
-     
-     @Test
-	    public void whenInvalidId_thenReturnNull() {
-	        User fromDb = userRepository.findById(-11).orElse(null);
-	        assertThat(fromDb).isNull();
-	    }
-     
-     @Test
-	    public void givenListofEmployees_whenFindAll_thenReturnAllUsers() {
+	@BeforeEach
+	public void resetDb() {
+		userRepository.deleteAll();
+	}
 
-    	 User user = new User("Rucha","Rucha123",Role.ADMIN);
-    	 User user1 = new User("Kalyani","Kalyani123",Role.ADMIN);
-    	 User user2 = new User("Bhagya","Bhagya123",Role.USER);
-	    	
-	        entityManager.persist(user);
-	        entityManager.persist(user1);
-	        entityManager.persist(user2);
-	        entityManager.flush();
+	@Test
+	public void whenFindById_thenReturnUser() {
+		User user = new User("Rucha","Rucha123",Role.ADMIN);
+		entityManager.persistAndFlush(user);
 
-	        List<User> userList = userRepository.findAll();
+		User fromDb = userRepository.findById(user.getUserId()).orElse(null);
+		assertThat(fromDb.getUserName()).isEqualTo(user.getUserName());
+	}
 
-	        assertThat(userList).hasSize(3).extracting(User::getUserName)
-	        					.containsOnly(user.getUserName(), user1.getUserName(),
-	        							user2.getUserName());
-	    }
+	@Test
+	public void whenInvalidId_thenReturnNull() {
+		User fromDb = userRepository.findById(-11).orElse(null);
+		assertThat(fromDb).isNull();
+	}
+
+	@Test
+	public void givenListofEmployees_whenFindAll_thenReturnAllUsers() {
+
+		User user = new User("Rucha","Rucha123",Role.ADMIN);
+		User user1 = new User("Kalyani","Kalyani123",Role.ADMIN);
+		User user2 = new User("Bhagya","Bhagya123",Role.USER);
+
+		entityManager.persist(user);
+		entityManager.persist(user1);
+		entityManager.persist(user2);
+		entityManager.flush();
+
+		List<User> userList = userRepository.findAll();
+
+		assertThat(userList).hasSize(3).extracting(User::getUserName)
+		.containsOnly(user.getUserName(), user1.getUserName(),
+				user2.getUserName());
+	}
 }

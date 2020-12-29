@@ -38,88 +38,88 @@ import com.capgemini.census.entity.Relationship;
 @DataJpaTest
 public class MemberInformationRepositoryTest {
 
-	 @Autowired
-	    private TestEntityManager entityManager;
+	@Autowired
+	private TestEntityManager entityManager;
 
-	    @Autowired
-	    private MemberInformationRepository memberInformationRepository;
-	    
-	    @Test
-	    public void whenFindByFirstName_thenReturnMember() {
+	@Autowired
+	private MemberInformationRepository memberInformationRepository;
 
-	        MemberInformation member1 = new MemberInformation("Rucha","Sheth",22
-	        		,Gender.FEMALE,"BE",MaritalStatus.UNMARRIED,Relationship.DAUGHTER);
-	        
-	        entityManager.persistAndFlush(member1);
+	@Test
+	public void whenFindByFirstName_thenReturnMember() {
 
-	        MemberInformation found = memberInformationRepository.findByFirstName(member1.getFirstName());
-	        assertThat(((MemberInformation) found).getFirstName()).isEqualTo(member1.getFirstName());
-	    }
+		MemberInformation member1 = new MemberInformation("Rucha","Sheth",22
+				,Gender.FEMALE,"BE",MaritalStatus.UNMARRIED,Relationship.DAUGHTER);
 
-	    @Test
-	    public void whenInvalidFirstName_thenReturnNull() {
-	        MemberInformation fromDb =  memberInformationRepository.findByFirstName("doesNotExist");
-	        assertThat(fromDb).isNull();
-	    }
-	    
-	    @Test
-	    public void whenFindByLastName_thenReturnMember() {
+		entityManager.persistAndFlush(member1);
 
-	        MemberInformation member1 = new MemberInformation("Rucha","Sheth",22
-	        		,Gender.FEMALE,"BE",MaritalStatus.UNMARRIED,Relationship.DAUGHTER);
-	        
-	        entityManager.persistAndFlush(member1);
+		MemberInformation found = memberInformationRepository.findByFirstName(member1.getFirstName());
+		assertThat(((MemberInformation) found).getFirstName()).isEqualTo(member1.getFirstName());
+	}
 
-	        MemberInformation found = memberInformationRepository.findByLastName(member1.getLastName());
-	        assertThat(((MemberInformation) found).getLastName()).isEqualTo(member1.getLastName());
-	    }
-	    
-	    @Test
-	    public void whenInvalidLastName_thenReturnNull() {
-	        MemberInformation fromDb =  memberInformationRepository.findByLastName("doesNotExist");
-	        assertThat(fromDb).isNull();
-	    }
-	    
-	    @Test
-	    public void whenInvalidId_thenReturnNull() {
-	        MemberInformation fromDb = memberInformationRepository.findById(-11).orElse(null);
-	        assertThat(fromDb).isNull();
-	    }
-	    
-	    @Test
-	    public void whenFindById_thenReturnMember() {
-	    	 MemberInformation member = new MemberInformation("Rucha","Sheth",22
-		        		,Gender.FEMALE,"BE",MaritalStatus.UNMARRIED,Relationship.DAUGHTER);
+	@Test
+	public void whenInvalidFirstName_thenReturnNull() {
+		MemberInformation fromDb =  memberInformationRepository.findByFirstName("doesNotExist");
+		assertThat(fromDb).isNull();
+	}
 
-	        entityManager.persistAndFlush(member);
+	@Test
+	public void whenFindByLastName_thenReturnMember() {
 
-	        MemberInformation fromDb = memberInformationRepository.findById(member.getMemberId()).orElse(null);
-	        assertThat(fromDb.getFirstName()).isEqualTo(member.getFirstName());
-	    }
+		MemberInformation member1 = new MemberInformation("Rucha","Sheth",22
+				,Gender.FEMALE,"BE",MaritalStatus.UNMARRIED,Relationship.DAUGHTER);
 
-	    @Test
-	    public void givenListofEmployees_whenFindAll_thenReturnAllMember() {
+		entityManager.persistAndFlush(member1);
 
-	    	 MemberInformation member = new MemberInformation("Rucha","Sheth",22
-		        		,Gender.FEMALE,"BE",MaritalStatus.UNMARRIED,Relationship.DAUGHTER);
+		MemberInformation found = memberInformationRepository.findByLastName(member1.getLastName());
+		assertThat(((MemberInformation) found).getLastName()).isEqualTo(member1.getLastName());
+	}
 
-	    	 MemberInformation member1 = new MemberInformation("Kalyani","Shinde",26
-		        		,Gender.FEMALE,"BE",MaritalStatus.UNMARRIED,Relationship.DAUGHTER);
+	@Test
+	public void whenInvalidLastName_thenReturnNull() {
+		MemberInformation fromDb =  memberInformationRepository.findByLastName("doesNotExist");
+		assertThat(fromDb).isNull();
+	}
 
-	    	 MemberInformation member2 = new MemberInformation("Bhagyashree","Marekar",24
-		        		,Gender.FEMALE,"BE",MaritalStatus.UNMARRIED,Relationship.DAUGHTER);
+	@Test
+	public void whenInvalidId_thenReturnNull() {
+		MemberInformation fromDb = memberInformationRepository.findById(-11).orElse(null);
+		assertThat(fromDb).isNull();
+	}
 
-	    	
-	        entityManager.persist(member);
-	        entityManager.persist(member1);
-	        entityManager.persist(member2);
-	        entityManager.flush();
+	@Test
+	public void whenFindById_thenReturnMember() {
+		MemberInformation member = new MemberInformation("Rucha","Sheth",22
+				,Gender.FEMALE,"BE",MaritalStatus.UNMARRIED,Relationship.DAUGHTER);
 
-	        List<MemberInformation> memberInfo = memberInformationRepository.findAll();
+		entityManager.persistAndFlush(member);
 
-	        assertThat(memberInfo).hasSize(3).extracting(MemberInformation::getFirstName)
-	        					.containsOnly(member.getFirstName(), member1.getFirstName(),
-	        							member2.getFirstName());
-	    }
+		MemberInformation fromDb = memberInformationRepository.findById(member.getMemberId()).orElse(null);
+		assertThat(fromDb.getFirstName()).isEqualTo(member.getFirstName());
+	}
+
+	@Test
+	public void givenListofEmployees_whenFindAll_thenReturnAllMember() {
+
+		MemberInformation member = new MemberInformation("Rucha","Sheth",22
+				,Gender.FEMALE,"BE",MaritalStatus.UNMARRIED,Relationship.DAUGHTER);
+
+		MemberInformation member1 = new MemberInformation("Kalyani","Shinde",26
+				,Gender.FEMALE,"BE",MaritalStatus.UNMARRIED,Relationship.DAUGHTER);
+
+		MemberInformation member2 = new MemberInformation("Bhagyashree","Marekar",24
+				,Gender.FEMALE,"BE",MaritalStatus.UNMARRIED,Relationship.DAUGHTER);
+
+
+		entityManager.persist(member);
+		entityManager.persist(member1);
+		entityManager.persist(member2);
+		entityManager.flush();
+
+		List<MemberInformation> memberInfo = memberInformationRepository.findAll();
+
+		assertThat(memberInfo).hasSize(3).extracting(MemberInformation::getFirstName)
+		.containsOnly(member.getFirstName(), member1.getFirstName(),
+				member2.getFirstName());
+	}
 
 }

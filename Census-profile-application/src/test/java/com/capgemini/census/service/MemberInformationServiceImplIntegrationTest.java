@@ -1,15 +1,10 @@
 package com.capgemini.census.service;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.mockito.internal.verification.VerificationModeFactory;
@@ -23,7 +18,6 @@ import com.capgemini.census.entity.Gender;
 import com.capgemini.census.entity.MaritalStatus;
 import com.capgemini.census.entity.MemberInformation;
 import com.capgemini.census.entity.Relationship;
-import com.capgemini.census.exception.MemberInformationException;
 import com.capgemini.census.repository.MemberInformationRepository;
 
 
@@ -61,18 +55,8 @@ public class MemberInformationServiceImplIntegrationTest {
 
 	    }
 	    
-		/*
-		 * @Test public void whenValidId_thenMemberShouldBeFound() throws
-		 * MemberInformationException { MemberInformation fromDb
-		 * =memberInformationService.getMemberInformationByFirstName("Rucha");
-		 * assertThat(fromDb.getFirstName()).isEqualTo("Rucha");
-		 * 
-		 * verifyFindByIdIsCalledOnce();
-		 * 
-		 * }
-		 */
-	    
 	   
+		@SuppressWarnings("unused")
 		private void verifyFindByIdIsCalledOnce() {
 			Mockito.verify(memberInformationRepository,
 					VerificationModeFactory.times(1)).findById(Mockito.anyInt());
@@ -80,3 +64,17 @@ public class MemberInformationServiceImplIntegrationTest {
 			Mockito.reset(memberInformationRepository);
 		}
 }
+
+
+
+/*
+ * @Test public void whenValidId_thenMemberShouldBeFound() throws
+ * MemberInformationException { MemberInformation fromDb
+ * =memberInformationService.getMemberInformationByFirstName("Rucha");
+ * assertThat(fromDb.getFirstName()).isEqualTo("Rucha");
+ * 
+ * verifyFindByIdIsCalledOnce();
+ * 
+ * }
+ */
+

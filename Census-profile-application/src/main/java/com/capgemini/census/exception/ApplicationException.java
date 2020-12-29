@@ -5,6 +5,7 @@ package com.capgemini.census.exception;
  * @author HP
  *
  */
+@SuppressWarnings("serial")
 public class ApplicationException extends Exception{
 	private String message;
 

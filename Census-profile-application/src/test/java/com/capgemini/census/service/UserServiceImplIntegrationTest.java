@@ -33,7 +33,6 @@ public class UserServiceImplIntegrationTest {
 			return new UserServiceImpl();
 		}
 	}
-	
 	@Autowired
 	private UserService userService;
 	
@@ -55,7 +54,6 @@ public class UserServiceImplIntegrationTest {
 	  Mockito.when(userRepository.findById(user.getUserId())).thenReturn(Optional.of(user));
 				  
 	   	}
-	
 	  @Test
 	    public void whenValidId_thenUserShouldBeFound() throws UserException {
 	      

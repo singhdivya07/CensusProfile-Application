@@ -2,7 +2,6 @@ package com.capgemini.census.entity;
 
 import java.time.LocalDate;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -41,27 +40,19 @@ public class MemberInformation {
 	@Column(name = "member_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer memberId;
-	@Column(name = "first_name")
+	@Column(name = "first_name",nullable = false)
 	private String firstName;
-	@Column(name = "last_name")
+	@Column(name = "last_name",nullable = false)
 	private String lastName;
 	private Integer age;
 	
 	private LocalDate dob;
-	@Column(name = "education_details")
+	@Column(name = "education_details",nullable = false)
 	private String educationDetails;
 	@Column(name = "gender")
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
-	public Gender getGender() {
-		return gender;
-	}
-
-
-	public void setGender(Gender gender) {
-		this.gender = gender;
-	}
-
+	
 
 	@Column(name = "marital_status")
 	@Enumerated(EnumType.STRING)
@@ -102,7 +93,7 @@ public class MemberInformation {
 
 	public MemberInformation(String firstName, String lastName, int age, Gender gender, String educationDetails,
 			MaritalStatus maritalStatus, Relationship relationship) {
-		// TODO Auto-generated constructor stub
+		
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.age = age;
@@ -146,7 +137,14 @@ public class MemberInformation {
 		this.age = age;
 	}
 
-	
+	public Gender getGender() {
+		return gender;
+	}
+
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
 
 	public LocalDate getDob() {
 		return dob;

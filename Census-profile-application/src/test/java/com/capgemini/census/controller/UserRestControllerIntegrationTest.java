@@ -84,17 +84,5 @@ public class UserRestControllerIntegrationTest {
 	        User emp = new User(userName,password,role);
 	        repository.saveAndFlush(emp);
 	    }    
-	    
-
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-
+	    	    
 }
