@@ -3,7 +3,6 @@ package com.capgemini.census.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -42,8 +41,8 @@ public class MemberInformationController {
 	@Autowired
 	private MemberInformationService memberInformationService;
 
-	// http://localhost:8081/springfox/api/member/1
-	// http://localhost:8081/api/member/
+	// http://localhost:9090/springfox/api/member/1
+	// http://localhost:9090/api/member/
 	// add member
 
 	/**
@@ -101,7 +100,11 @@ public class MemberInformationController {
 	 * @return
 	 */
 
-	@ApiOperation(value = "Get Member by Id", response = MemberInformation.class, tags = "get-Member", consumes = "MemberId", httpMethod = "GET")
+	@ApiOperation(value = "Get Member by Id", 
+			      response = MemberInformation.class,
+			      tags = "get-Member", 
+			      consumes = "MemberId", 
+			      httpMethod = "GET")
 	@GetMapping("/member/{id}")
 	public ResponseEntity<MemberInformation> getMemberInformationById(@PathVariable Integer id) {
 		try {
@@ -120,7 +123,10 @@ public class MemberInformationController {
 	 * @param id Id for which the information is to be deleted.
 	 * @return
 	 */
-	@ApiOperation(value = "Delete member", consumes = "member id", response = String.class, httpMethod = "DELETE")
+	@ApiOperation(value = "Delete member", 
+			      consumes = "member id", 
+			      response = String.class,
+			      httpMethod = "DELETE")
 	@DeleteMapping("/member/{id}")
 	public String deleteMemberInformationById(@PathVariable Integer id) {
 		try {
@@ -148,11 +154,9 @@ public class MemberInformationController {
 	public ResponseEntity<MemberInformation> updateMemberInformation(@RequestBody MemberInformation memberInformation) {
 		try {
 			MemberInformation updatedMember = memberInformationService.updateMemberInformation(memberInformation);
-			// log.info("Product: " + product.getProductId() + " updated");
 			return new ResponseEntity<>(updatedMember, HttpStatus.OK);
 
 		} catch (MemberInformationException e) {
-			// log.error(e.getMessage());
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 	}
