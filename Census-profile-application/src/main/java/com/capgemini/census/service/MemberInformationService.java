@@ -16,6 +16,7 @@ public interface MemberInformationService {
 	public MemberInformation getMemberInformationByFirstName(String firstName) throws MemberInformationException;
 	public MemberInformation getMemberInformationByLastName(String lastName) throws MemberInformationException;
 //	public MemberInformation getMemberInformationByDate(Date date) throws MemberInformationException;
+
 	
 
 }

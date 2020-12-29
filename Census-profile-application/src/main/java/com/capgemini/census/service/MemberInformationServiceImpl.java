@@ -22,7 +22,7 @@ import com.capgemini.census.repository.MemberInformationRepository;
  * This is the Implementation class.
  * This class defines the application's boundary 
  * and its set of available operations from the perspective of
- *  interfacing client layers. It encapsulates the application's 
+ * interfacing client layers. It encapsulates the application's 
  * business logic, controlling transactions and co-ordinating 
  * responses in the implementation of its operations.
  * 
@@ -36,10 +36,12 @@ public class MemberInformationServiceImpl implements MemberInformationService {
 	@Autowired
 	private MemberInformationRepository memberInformationRepository ;
 	
+	Integer count=0;
+	Integer i=0;
 	@Autowired
 	ApplicationRepository applicationRepositoryImpl;
 
-	// @Override
+	
 	public MemberInformation addMember(MemberInformation memInfo,Integer id) throws MemberInformationException {
 		try {
 			
@@ -56,11 +58,16 @@ public class MemberInformationServiceImpl implements MemberInformationService {
 			Matcher m = p.matcher(firstName);
 			Matcher m1 = p.matcher(lastName);
 
+
+			
 			if ((m.matches()) && (m1.matches())) {
 				// Age validation
-				if (memInfo.getAge() < 125)
-					return memberInformationRepository.save(memInfo);
+				if (memInfo.getAge() < 125 && (count>=0 && count>=4))
+				{
 					
+					return memberInformationRepository.save(memInfo);
+				
+			}
 				else {
 					throw new MemberInformationException("Age cannot be greater than 125 yrs");
 				}
@@ -141,6 +148,8 @@ public class MemberInformationServiceImpl implements MemberInformationService {
 		// TODO Auto-generated method stub
 		return memberInformationRepository.findByLastName(lastName);
 	}
+
+	
 
 	
 }

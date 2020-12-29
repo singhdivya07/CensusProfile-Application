@@ -3,6 +3,7 @@ package com.capgemini.census.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,11 +24,10 @@ import com.capgemini.census.service.MemberInformationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-
 /**
- * This controller class is responsible for processing 
- * incoming request of the client.
- * Then, the controller invokes a business class to process business-related tasks
+ * This controller class is responsible for processing incoming request of the
+ * client. Then, the controller invokes a business class to process
+ * business-related tasks
  * 
  * @author HP
  *
@@ -40,98 +40,94 @@ import io.swagger.annotations.ApiOperation;
 
 public class MemberInformationController {
 	@Autowired
-	//@Qualifier(value = "productServiceSpringData")
 	private MemberInformationService memberInformationService;
 
-	//http://localhost:8081/springfox/api/member/1
+	// http://localhost:8081/springfox/api/member/1
 	// http://localhost:8081/api/member/
 	// add member
-	
+
 	/**
 	 * This method adds the member to the application.
+	 * 
 	 * @param id
 	 * @param memberInformation
 	 * @return
 	 */
+
+	@ApiOperation(value = "Add Member", 
+	              consumes = "receives member object as Request body",
+	              response = String.class,
+	              httpMethod = "POST")
 	
-	@ApiOperation(value = "Add Member",
-			consumes = "receives member object as Request body",
-			response = String.class,
-			httpMethod = "POST"
-			)
 	@PostMapping("/member/{id}")
-	public ResponseEntity<MemberInformation> addMember(@PathVariable Integer id,  @RequestBody MemberInformation memberInformation) {
+	public ResponseEntity<MemberInformation> addMember(@PathVariable Integer id,
+			@RequestBody MemberInformation memberInformation) {
 		try {
-			MemberInformation saved  = memberInformationService.addMember(memberInformation,id);
+			MemberInformation saved = memberInformationService.addMember(memberInformation, id);
 			return new ResponseEntity<>(saved, HttpStatus.CREATED);
-			
-			
+
 		} catch (MemberInformationException e) {
-			
+
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 	}
-	
+
 	/**
 	 * This method returns the details of all the members in the application.
+	 * 
 	 * @return
 	 */
+	
 	@ApiOperation(value = "Get all members",
-			response = MemberInformation.class,
-			tags = "get-all-members",			
-			httpMethod = "GET")
+			      response = MemberInformation.class, 
+			      tags = "get-all-members", 
+			      httpMethod = "GET")
+	
 	@GetMapping("/member")
 	public ResponseEntity<List<MemberInformation>> getMemberAppDeatils() {
 		try {
 			List<MemberInformation> memberList = memberInformationService.getAllMemberDeatils();
 			return new ResponseEntity<>(memberList, HttpStatus.OK);
 		} catch (MemberInformationException e) {
-			//log.error(e.getMessage());
+			// log.error(e.getMessage());
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 	}
-	
+
 	/**
 	 * This method returns the member information for the specified Id.
+	 * 
 	 * @param id
 	 * @return
 	 */
 
-	@ApiOperation(value = "Get Member by Id",
-			response = MemberInformation.class,
-			tags = "get-Member",
-			consumes = "MemberId",
-			httpMethod = "GET")
+	@ApiOperation(value = "Get Member by Id", response = MemberInformation.class, tags = "get-Member", consumes = "MemberId", httpMethod = "GET")
 	@GetMapping("/member/{id}")
 	public ResponseEntity<MemberInformation> getMemberInformationById(@PathVariable Integer id) {
 		try {
 			MemberInformation memberInformation = memberInformationService.getMemberInformationById(id);
-			//log.info("Product added" + product);
+			// log.info("Product added" + product);
 			return new ResponseEntity<>(memberInformation, HttpStatus.OK);
 		} catch (MemberInformationException e) {
-			//log.error(e.getMessage());
+			// log.error(e.getMessage());
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 	}
-	
+
 	/**
 	 * This method deletes the member Information from the record.
+	 * 
 	 * @param id Id for which the information is to be deleted.
 	 * @return
 	 */
-	@ApiOperation(value = "Delete member",
-			consumes = "member id",
-			response = String.class,
-			httpMethod = "DELETE")
+	@ApiOperation(value = "Delete member", consumes = "member id", response = String.class, httpMethod = "DELETE")
 	@DeleteMapping("/member/{id}")
 	public String deleteMemberInformationById(@PathVariable Integer id) {
 		try {
 			Integer status = memberInformationService.deleteMemberInformationById(id);
 			if (status == 1) {
-				//log.info("user: " + id + " deleted from database");
 				return "user: " + id + " deleted from database";
 			} else {
-				//log.debug("Unable to delete user from database");
 				return "Unable to delete user from database";
 			}
 
@@ -142,24 +138,24 @@ public class MemberInformationController {
 
 	/**
 	 * This method updates the member information as requested by the user.
+	 * 
 	 * @param memberInformation
 	 * @return
 	 */
-	
-	@ApiOperation(value = "Update member",
-			consumes = "product object sent as request body",
-			response =MemberInformation.class,
-			httpMethod = "PUT")
+
+	@ApiOperation(value = "Update member", consumes = "product object sent as request body", response = MemberInformation.class, httpMethod = "PUT")
 	@PutMapping("/member/")
 	public ResponseEntity<MemberInformation> updateMemberInformation(@RequestBody MemberInformation memberInformation) {
 		try {
 			MemberInformation updatedMember = memberInformationService.updateMemberInformation(memberInformation);
-			//log.info("Product: " + product.getProductId() + " updated");
+			// log.info("Product: " + product.getProductId() + " updated");
 			return new ResponseEntity<>(updatedMember, HttpStatus.OK);
 
 		} catch (MemberInformationException e) {
-		//	log.error(e.getMessage());
+			// log.error(e.getMessage());
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 	}
+	
+
 }

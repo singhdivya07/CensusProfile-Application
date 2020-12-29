@@ -1,5 +1,6 @@
 package com.capgemini.census.entity;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -22,6 +23,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
@@ -33,6 +37,9 @@ import lombok.ToString;
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
 @Table(name="application")
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class Application {
 	
 	@Id
@@ -47,58 +54,12 @@ public class Application {
 	private Set<MemberInformation> members;
 
 	@ToString.Exclude
-	@ManyToOne //(cascade=CascadeType.ALL)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+	@ManyToOne (cascade=CascadeType.ALL)
+   // @OnDelete(action = OnDeleteAction.CASCADE)
 	@JsonIgnore
 	@JsonBackReference
     @JoinColumn(name="user_id")
     private User user;
 
-	public Application() {
-		super();
-	}
-
-	public Application(Integer applicationId, Set<MemberInformation> members, User user) {
-		super();
-		this.applicationId = applicationId;
-		this.members = members;
-		this.user = user;
-	}
-
-	public Application(User user) {
-		// TODO Auto-generated constructor stub
-		this.user = user;
-	}
-
-	public Integer getApplicationId() {
-		return applicationId;
-	}
-
-	public void setApplicationId(Integer applicationId) {
-		this.applicationId = applicationId;
-	}
-
-	public Set<MemberInformation> getMembers() {
-		return members;
-	}
-
-	public void setMembers(Set<MemberInformation> members) {
-		this.members = members;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	@Override
-	public String toString() {
-		return "Application [applicationId=" + applicationId + ", members=" + members + ", user=" + user + "]";
-	}
 	
-	
-
 }

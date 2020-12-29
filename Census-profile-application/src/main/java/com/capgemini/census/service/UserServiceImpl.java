@@ -20,13 +20,14 @@ import com.capgemini.census.repository.UserRepository;
  * This is the Implementation class.
  * This class defines the application's boundary 
  * and its set of available operations from the perspective of
- *  interfacing client layers. It encapsulates the application's 
+ * interfacing client layers. It encapsulates the application's 
  * business logic, controlling transactions and co-ordinating 
  * responses in the implementation of its operations.
  * 
  * @author HP
  *
  */
+
 @Service(value = "UserServiceImpl")
 @Transactional
 public class UserServiceImpl implements UserService{
@@ -43,14 +44,7 @@ public class UserServiceImpl implements UserService{
 		}
 		
 	}
-	public User updateUser(Integer userId) throws UserException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	public int deleteMember(Integer userId) throws UserException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	
 	@Override
 	public List<User> getAllUserDeatils() throws UserException {
 		
