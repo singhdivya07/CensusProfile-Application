@@ -19,6 +19,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
@@ -27,6 +30,9 @@ import lombok.ToString;
  * @author HP
  *
  */
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
 @Table(name="application")
@@ -49,51 +55,5 @@ public class Application {
 	@JsonBackReference
     @JoinColumn(name="user_id")
     private User user;
-
-	public Application() {
-		super();
-	}
-
-	public Application(Integer applicationId, Set<MemberInformation> members, User user) {
-		super();
-		this.applicationId = applicationId;
-		this.members = members;
-		this.user = user;
-	}
-
-	public Application(User user) {
-		this.user = user;
-	}
-
-	public Integer getApplicationId() {
-		return applicationId;
-	}
-
-	public void setApplicationId(Integer applicationId) {
-		this.applicationId = applicationId;
-	}
-
-	public Set<MemberInformation> getMembers() {
-		return members;
-	}
-
-	public void setMembers(Set<MemberInformation> members) {
-		this.members = members;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	@Override
-	public String toString() {
-		return "Application [applicationId=" + applicationId + ", members=" + members + ", user=" + user + "]";
-	}
-	
-	
 
 }

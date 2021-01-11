@@ -39,8 +39,8 @@ public class LoginController {
 
 /**
  * Sign In function is performed by this method.
- * @param 
- * @return
+ * @param User Object is passed to validate sign in.
+ * @return Returns the response whether the sign in was successful or not.
  */
 
 	@PostMapping("/login") 
@@ -57,8 +57,8 @@ public class LoginController {
 
 	/**
 	 * Sign out is performed by this method.
-	 * @param user
-	 * @return
+	 * @param user 
+	 * @return Returns the response whether the signout was successful or not.
 	 */
 	@PostMapping("/logout") 
 	@ApiOperation(value = "SignOut")
@@ -75,7 +75,7 @@ public class LoginController {
 	 * This method resets the password for login.
 	 * @param user the Id for which you want to reset the password.
 	 * @param new_password The new password , user wants to set.
-	 * @return
+	 * @return Returns the message whether the password was successfully reseted or not.
 	 */
 
 	@PostMapping("/reset")

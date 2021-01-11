@@ -27,7 +27,7 @@ public class UserServiceImplIntegrationTest {
 
 	@TestConfiguration
 	static class UserServiceImplTestContextConfiguration{
-		
+
 		@Bean
 		public UserService userService() {
 			return new UserServiceImpl();
@@ -35,36 +35,30 @@ public class UserServiceImplIntegrationTest {
 	}
 	@Autowired
 	private UserService userService;
-	
+
 	@MockBean
 	private UserRepository userRepository;
-	
+
 	@BeforeEach
 	public void setUp() {
 		User user = new User();
 		user.setUserId(101);
 		user.setUserName("Rucha");
 		user.setRole(Role.ADMIN);
-		
-		
-		User user1 = new User(102,"Purva","Purva123",Role.USER);
-		
-	   List<User> allUsers = Arrays.asList(user);
+		Mockito.when(userRepository.findById(user.getUserId())).thenReturn(Optional.of(user));
 
-	  Mockito.when(userRepository.findById(user.getUserId())).thenReturn(Optional.of(user));
-				  
-	   	}
-	  @Test
-	    public void whenValidId_thenUserShouldBeFound() throws UserException {
-	      
-		  User fromDb = userService.getUserById(101);
-		  assertThat(fromDb.getUserName()).isEqualTo("Rucha");
-		  
-		  verifyFindByIdIsCalledOnce();
-	    }
-	  
-	  private void verifyFindByIdIsCalledOnce() {
-	        Mockito.verify(userRepository, VerificationModeFactory.times(1)).findById(Mockito.anyInt());
-	        Mockito.reset(userRepository);
-	    }
+	}
+	@Test
+	public void whenValidId_thenUserShouldBeFound() throws UserException {
+
+		User fromDb = userService.getUserById(101);
+		assertThat(fromDb.getUserName()).isEqualTo("Rucha");
+
+		verifyFindByIdIsCalledOnce();
+	}
+
+	private void verifyFindByIdIsCalledOnce() {
+		Mockito.verify(userRepository, VerificationModeFactory.times(1)).findById(Mockito.anyInt());
+		Mockito.reset(userRepository);
+	}
 }

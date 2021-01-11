@@ -7,32 +7,29 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-
-//global exception handler
 @ControllerAdvice
 public class RestResponseEntityExceptionHandler 
-                                extends ResponseEntityExceptionHandler {
+extends ResponseEntityExceptionHandler {
 
- 
 
-    @ExceptionHandler(value 
-            = { NullPointerException.class,
-                    IllegalArgumentException.class, 
-                      IllegalStateException.class })
-    protected ResponseEntity<Object> handleConflict(
-            RuntimeException ex, WebRequest request) {
-        String bodyOfResponse = "application-wide unchecked exception:"+ex.getMessage();
-        return handleExceptionInternal(ex, bodyOfResponse, 
-                new HttpHeaders(), HttpStatus.CONFLICT, request);
-    }
-    
-    @ExceptionHandler(value 
-            = { DataIntegrityViolationException.class })
-    protected ResponseEntity<Object> handleAnotherConflict(
-            Exception ex, WebRequest request) {
-        //String bodyOfResponse = "application-wide checked exception";
-        String bodyOfResponse = ex.getMessage();
-        return this.handleExceptionInternal(ex, bodyOfResponse, 
-                new HttpHeaders(), HttpStatus.CONFLICT, request);
-    }
+
+	@ExceptionHandler(value 
+			= { NullPointerException.class,
+					IllegalArgumentException.class, 
+					IllegalStateException.class })
+	protected ResponseEntity<Object> handleConflict(
+			RuntimeException ex, WebRequest request) {
+		String bodyOfResponse = "application-wide unchecked exception:"+ex.getMessage();
+		return handleExceptionInternal(ex, bodyOfResponse, 
+				new HttpHeaders(), HttpStatus.CONFLICT, request);
+	}
+
+	@ExceptionHandler(value 
+			= { DataIntegrityViolationException.class })
+	protected ResponseEntity<Object> handleAnotherConflict(
+			Exception ex, WebRequest request) {
+		String bodyOfResponse = ex.getMessage();
+		return this.handleExceptionInternal(ex, bodyOfResponse, 
+				new HttpHeaders(), HttpStatus.CONFLICT, request);
+	}
 }

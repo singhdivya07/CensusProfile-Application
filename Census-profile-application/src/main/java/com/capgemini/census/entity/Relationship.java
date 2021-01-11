@@ -1,6 +1,8 @@
 package com.capgemini.census.entity;
-/*
- * Relationship Enum class MOTHER,FATHER,SON,DAUGHTER value
+/**
+ * Enum for Relationship 
+ * @author HP
+ *
  */
 public enum Relationship {
 	MOTHER,FATHER,SON,DAUGHTER;

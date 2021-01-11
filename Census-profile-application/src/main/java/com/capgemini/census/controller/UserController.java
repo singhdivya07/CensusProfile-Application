@@ -59,7 +59,7 @@ public class UserController {
 	
 	/**
 	 * This method displays the existing Information about the user.
-	 * @return
+	 * @return Returns the information about all the users in the database.
 	 */
 	@GetMapping("/user")
 	public ResponseEntity<List<User>> getAllUserDeatils() {
@@ -67,7 +67,6 @@ public class UserController {
 			List<User> userList = userService.getAllUserDeatils();
 			return new ResponseEntity<>(userList, HttpStatus.OK);
 		} catch (UserException e) {
-			//log.error(e.getMessage());
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 	}
@@ -75,25 +74,23 @@ public class UserController {
 	/**
 	 * This method displays the existing Information about the user, 
 	 * for the specified Id.
-	 * @param id
-	 * @return
+	 * @param id The Id for which the details are required.
+	 * @return Returns the details of the user for the specific Id.
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<User> getUserById(@PathVariable Integer id) {
 		try {
 			User user = userService.getUserById(id);
-			//log.info("Product added" + product);
 			return new ResponseEntity<>(user, HttpStatus.OK);
 		} catch (UserException e) {
-			//log.error(e.getMessage());
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 	}
 	
 	/**
 	 * This method removes the user from the record, specified by the Id.
-	 * @param id
-	 * @return
+	 * @param id The Id for which the user is to be deleted.
+	 * @return Returns the status whether the delete operation was successful or not.
 	 */
 	
 	@DeleteMapping("/{id}")
@@ -101,10 +98,8 @@ public class UserController {
 		try {
 			Integer status = userService.deleteUserById(id);
 			if (status == 1) {
-				//log.info("user: " + id + " deleted from database");
 				return "user: " + id + " deleted from database";
 			} else {
-				//log.debug("Unable to delete user from database");
 				return "Unable to delete user from database";
 			}
 
@@ -115,8 +110,8 @@ public class UserController {
 
 	/**
 	 * This method updates user details.
-	 * @param user
-	 * @return
+	 * @param user The user object for which details are to be updated.
+	 * @return Returns the status whether the update operation was successful or not.
 	 */
 	@ApiOperation(value = "Update user",
 			consumes = "user object sent as request body",
@@ -126,11 +121,9 @@ public class UserController {
 	public ResponseEntity<User> updateUser(@RequestBody User user) {
 		try {
 			User updatedUser = userService.updateUser(user);
-			//log.info("Product: " + product.getProductId() + " updated");
 			return new ResponseEntity<>(updatedUser, HttpStatus.OK);
 
 		} catch (UserException e) {
-		//	log.error(e.getMessage());
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 	}

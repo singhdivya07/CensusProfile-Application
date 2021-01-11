@@ -44,13 +44,13 @@ public class ApplicationController {
 		/**
 		 * This method adds application id into the application table.
 		 * @param id This is the unique Id for each family.
-		 * @param application 
+		 * @param application This is the object of application entity.
 		 */
 		@PostMapping("/{id}")
 		public void addApplication(@PathVariable Integer id,@RequestBody Application application) 
 		{
 			try {
-				//application.setUser(user);
+				
 				applicationService.addApplication(id,application);
 			} catch (ApplicationException e) {
 				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
@@ -59,7 +59,7 @@ public class ApplicationController {
 
 		/**
 		 * This methods returns the application details that exists.
-		 * @return
+		 * @return Returns the list of application details.
 		 */
 		@GetMapping("/get/")
 		public ResponseEntity<List<Application>> getAllAppDeatils() {
@@ -67,70 +67,26 @@ public class ApplicationController {
 				List<Application> appList = applicationService.getAllAppDeatils();
 				return new ResponseEntity<>(appList, HttpStatus.OK);
 			} catch (ApplicationException e) {
-				//log.error(e.getMessage());
+				
 				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 			}
 		}
 		
 		/**
 		 * This method returns the information for the specific required Id.
-		 * 
+		 * @param id It is the unique id of user.
+		 * @return It returns the application for the specified Id.
 		 */
 		@GetMapping("/{id}")
-		public ResponseEntity<Application> getProductById(@PathVariable Integer id) {
+		public ResponseEntity<Application> getApplicationById(@PathVariable Integer id) {
 			try {
 				Application application = applicationService.getApplicationById(id);
-				//log.info("Product added" + product);
+				
 				return new ResponseEntity<>(application, HttpStatus.OK);
 			} catch (ApplicationException e) {
-				//log.error(e.getMessage());
+				
 				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 			}
 		}
 
-		
-		/**
-		 * The method deletes the record for specific Id given as input.
-		 * @param id the id that needs to be deleted is stored in this variable.
-		 * @return
-		 */
-		@DeleteMapping("/{id}")
-		public String deleteApplicationById(@PathVariable Integer id) {
-			try {
-				Integer status = applicationService.deleteApplicationById(id);
-				if (status == 1) {
-					//log.info("product: " + id + " deleted from database");
-					return "application: " + id + " deleted from database";
-				} else {
-					//log.debug("Unable to delete product from database");
-					return "Unable to delete application from database";
-				}
-
-			} catch (ApplicationException e) {
-				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-			}
-		}
-
-		/**
-		 * This method updates the records.
-		 * @param application the record that has to be updated is stored in this variable.
-		 * @return
-		 */
-		
-		@ApiOperation(value = "Update application",
-				consumes = "application object sent as request body",
-				response = User.class,
-				httpMethod = "PUT")
-		@PutMapping("/")
-		public ResponseEntity<Application> updateApplication(@RequestBody Application application) {
-			try {
-				Application updatedApplication = applicationService.updateApplication(application);
-				//log.info("Product: " + product.getProductId() + " updated");
-				return new ResponseEntity<>(updatedApplication, HttpStatus.OK);
-
-			} catch (ApplicationException e) {
-			//	log.error(e.getMessage());
-				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-			}
-		}
 }

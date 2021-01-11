@@ -53,7 +53,7 @@ public class ApplicationServiceImpl implements ApplicationService{
 		
 	}
 	
-	/*
+	/**
 	 * This method returns application details that exists in the database.
 	 */
 	@Override
@@ -89,7 +89,9 @@ public class ApplicationServiceImpl implements ApplicationService{
 			throw new ApplicationException(e.getMessage(),e);
 		}
 	}
-
+/**
+ * This method deletes the Application by the specified Id.
+ */
 	@Override
 	public Integer deleteApplicationById(Integer id) throws ApplicationException {
 		try {
@@ -101,7 +103,9 @@ public class ApplicationServiceImpl implements ApplicationService{
 			throw new ApplicationException(e.getMessage(),e);
 		}
 	}
-
+/**
+ * This method updates the information for the application.
+ */
 	@Override
 	public Application updateApplication(Application application) throws ApplicationException {
 		try {

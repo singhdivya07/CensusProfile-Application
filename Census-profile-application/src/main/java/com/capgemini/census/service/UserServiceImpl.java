@@ -28,7 +28,9 @@ import com.capgemini.census.repository.UserRepository;
 @Service(value = "UserServiceImpl")
 @Transactional
 public class UserServiceImpl implements UserService{
-
+/**
+ * This method adds the user.
+ */
 	@Autowired
 	UserRepository userDao;
 	public User addUser(User user) throws UserException {
@@ -41,14 +43,9 @@ public class UserServiceImpl implements UserService{
 		}
 		
 	}
-	public User updateUser(Integer userId) throws UserException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	public int deleteMember(Integer userId) throws UserException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	/**
+	 * This method returns the details of all the users in the application.
+	 */
 	@Override
 	public List<User> getAllUserDeatils() throws UserException {
 		
@@ -63,6 +60,10 @@ public class UserServiceImpl implements UserService{
 			}
 		
 	}
+	/**
+	 * This method returns the details of specified 
+	 * user id.
+	 */
 	@Override
 	public User getUserById(Integer id) throws UserException {
 		try {
@@ -80,6 +81,10 @@ public class UserServiceImpl implements UserService{
 			throw new UserException(e.getMessage(),e);
 		}
 	}
+	/**
+	 * This method deletes the details of specified 
+	 * user id.
+	 */
 	@Override
 	public Integer deleteUserById(Integer id) throws UserException {
 		try {
@@ -91,6 +96,10 @@ public class UserServiceImpl implements UserService{
 			throw new UserException(e.getMessage(),e);
 		}
 	}
+	/**
+	 * This method updates the details of the
+	 * user.
+	 */
 	@Override
 	public User updateUser(User user) throws UserException {
 		try {

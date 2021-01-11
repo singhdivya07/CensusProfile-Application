@@ -75,19 +75,3 @@ public class MemberRestControllerIntegrationTest {
 	    	    
 
 }
-
-
-
-
-/*
- * @Test public void whenValidInput_thenCreateEmployee() throws Exception {
- * MemberInformation member = new MemberInformation(1,"meena","Sheth",22
- * ,Gender.FEMALE,"BE",MaritalStatus.UNMARRIED,Relationship.DAUGHTER);
- * 
- * mvc.perform(post("/api/member").contentType(MediaType.APPLICATION_JSON).
- * content(JsonUtil.toJson(member)));
- * 
- * List<MemberInformation> found = repository.findAll();
- * assertThat(found).extracting(MemberInformation::getFirstName).containsOnly(
- * "meena"); }
- */

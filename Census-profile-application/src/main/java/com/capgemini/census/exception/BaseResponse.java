@@ -1,22 +1,14 @@
 package com.capgemini.census.exception;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class BaseResponse {
-
- 
-
-    private Object response;
+	private Object response;
     private int statusCode;
-    
-    public Object getResponse() {
-        return response;
-    }
-    public void setResponse(Object response) {
-        this.response = response;
-    }
-    public int getStatusCode() {
-        return statusCode;
-    }
-    public void setStatusCode(int statusCode) {
-        this.statusCode = statusCode;
-    }
-    
+   
 }

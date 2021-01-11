@@ -13,9 +13,8 @@ public interface MemberInformationService {
 	public MemberInformation getMemberInformationById(Integer id) throws MemberInformationException;
 	public Integer deleteMemberInformationById(Integer id) throws MemberInformationException;
 	public MemberInformation updateMemberInformation(MemberInformation memberInformation) throws MemberInformationException;
-	public MemberInformation getMemberInformationByFirstName(String firstName) throws MemberInformationException;
-	public MemberInformation getMemberInformationByLastName(String lastName) throws MemberInformationException;
-//	public MemberInformation getMemberInformationByDate(Date date) throws MemberInformationException;
+	public List<MemberInformation> getMemberInformationByFirstName(String firstName) throws MemberInformationException;
+	public List<MemberInformation> getMemberInformationByLastName(String lastName) throws MemberInformationException;
 	
 
 }

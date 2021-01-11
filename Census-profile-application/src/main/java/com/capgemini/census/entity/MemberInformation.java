@@ -20,6 +20,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
@@ -32,6 +35,9 @@ import lombok.ToString;
 
  *
  */
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
 @Table(name = "member_information")
@@ -69,130 +75,16 @@ public class MemberInformation {
 	@ToString.Exclude
 	private Application application;
 
-
-	public MemberInformation() {
-
-	}
-
-
-	public MemberInformation(Integer memberId, String firstName, String lastName, Integer age, 
-			Gender gender , String educationDetails, MaritalStatus maritalStatus, Relationship relationship) {
-		
-		this.memberId = memberId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.age = age;
-		this.gender = gender;
-		//this.dob = dob;
-		this.educationDetails = educationDetails;
-		this.maritalStatus = maritalStatus;
-		this.relationship = relationship;
-		
-	}
-
-
-	public MemberInformation(String firstName, String lastName, int age, Gender gender, String educationDetails,
+	public MemberInformation(String firstName, String lastName, int age, Gender gender,String educationDetails,
 			MaritalStatus maritalStatus, Relationship relationship) {
 		
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.age = age;
 		this.gender = gender;
-		//this.dob = dob;
 		this.educationDetails = educationDetails;
 		this.maritalStatus = maritalStatus;
 		this.relationship = relationship;
-	}
-
-
-	public Integer getMemberId() {
-		return memberId;
-	}
-
-	public void setMemberId(Integer memberId) {
-		this.memberId = memberId;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public Integer getAge() {
-		return age;
-	}
-
-	public void setAge(Integer age) {
-		this.age = age;
-	}
-
-	public Gender getGender() {
-		return gender;
-	}
-
-
-	public void setGender(Gender gender) {
-		this.gender = gender;
-	}
-
-	public LocalDate getDob() {
-		return dob;
-	}
-
-	public void setDob(LocalDate dob) {
-		this.dob = dob;
-	}
-
-	public String getEducationDetails() {
-		return educationDetails;
-	}
-
-	public void setEducationDetails(String educationDetails) {
-		this.educationDetails = educationDetails;
-	}
-
-	public MaritalStatus getMaritalStatus() {
-		return maritalStatus;
-	}
-
-	public void setMaritalStatus(MaritalStatus maritalStatus) {
-		this.maritalStatus = maritalStatus;
-	}
-
-	public Relationship getRelationship() {
-		return relationship;
-	}
-
-	public void setRelationship(Relationship relationship) {
-		this.relationship = relationship;
-	}
-
-	public Application getApplication() {
-		return application;
-	}
-
-
-	public void setApplication(Application application) {
-		this.application = application;
-	}
-
-
-	@Override
-	public String toString() {
-		return "MemberInformation [memberId=" + memberId + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", age=" + age + ", dob=" + dob + ", educationDetails=" + educationDetails
-				+ ", maritalStatus=" + maritalStatus + ", relationship=" + relationship + "]";
 	}
 
 

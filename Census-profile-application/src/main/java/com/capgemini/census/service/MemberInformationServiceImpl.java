@@ -1,5 +1,7 @@
 package com.capgemini.census.service;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
@@ -38,17 +40,23 @@ public class MemberInformationServiceImpl implements MemberInformationService {
 	@Autowired
 	ApplicationRepository applicationRepositoryImpl;
 
-	// @Override
+	@Override
 	public MemberInformation addMember(MemberInformation memInfo,Integer id) throws MemberInformationException {
 		try {
 
 			Application application = applicationRepositoryImpl.findById(id).get();
 			memInfo.setApplication(application);
 
+			LocalDate dob = memInfo.getDob();
+			LocalDate currentDate = LocalDate.now();
+
+			memInfo.setAge(Period.between(dob,currentDate).getYears());
+
+
 			// Name validation
 			String firstName = memInfo.getFirstName();
 			String lastName = memInfo.getLastName();
-			
+
 			// Regex to check valid username.
 			String regex = "^[A-Za-z]{2,30}[\\s'*-]*[A-Za-z]*$";
 
@@ -56,14 +64,14 @@ public class MemberInformationServiceImpl implements MemberInformationService {
 			Matcher m = p.matcher(firstName);
 			Matcher m1 = p.matcher(lastName);
 
-		
+
 			if ((m.matches()) && (m1.matches())) {
-				
+
 				// Age validation
 				if (memInfo.getAge() < 125) {
-					
+
 					return memberInformationRepository.save(memInfo);
-					
+
 				}
 
 				else {
@@ -77,7 +85,9 @@ public class MemberInformationServiceImpl implements MemberInformationService {
 		}
 
 	}
-
+	/**
+	 * This method returns all the member Details in the application.
+	 */
 	@Override
 	public List<MemberInformation> getAllMemberDeatils() throws MemberInformationException {
 		try {
@@ -90,7 +100,9 @@ public class MemberInformationServiceImpl implements MemberInformationService {
 			throw new MemberInformationException(e.getMessage(),e);
 		}
 	}
-
+	/**
+	 * This method returns all the member Details in the application for the specific Id.
+	 */
 	@Override
 	public MemberInformation getMemberInformationById(Integer id) throws MemberInformationException {
 		try {
@@ -108,18 +120,24 @@ public class MemberInformationServiceImpl implements MemberInformationService {
 			throw new MemberInformationException(e.getMessage(),e);
 		}
 	}
-
+	/**
+	 * This method deletes the Information for the Specific Id.
+	 */
 	@Override
 	public Integer deleteMemberInformationById(Integer id) throws MemberInformationException {
 		try {
 			memberInformationRepository.deleteById(id);
-			return id;
+			return 1;
 		}catch(DataAccessException e) {
 			throw new MemberInformationException(e.getMessage(),e);
 		}catch(Exception e) {
 			throw new MemberInformationException(e.getMessage(),e);
 		}
 	}
+
+	/**
+	 * This method updates the Information for the Specific Id.
+	 */
 
 	@Override
 	public MemberInformation updateMemberInformation(MemberInformation memberInformation)
@@ -135,17 +153,22 @@ public class MemberInformationServiceImpl implements MemberInformationService {
 		}
 	}
 
+	/**
+	 * The method performs the search operation by the firstName.
+	 */
 	@Override
-	public MemberInformation getMemberInformationByFirstName(String firstName) throws MemberInformationException {
-		// TODO Auto-generated method stub
-		return memberInformationRepository.findByFirstName(firstName);
+	public List<MemberInformation> getMemberInformationByFirstName(String firstName) throws MemberInformationException {
+		return  memberInformationRepository.findByFirstName(firstName);
 	}
-
+	/**
+	 * The method performs the search operation by the LastName.
+	 */
 	@Override
-	public MemberInformation getMemberInformationByLastName(String lastName) throws MemberInformationException {
-		// TODO Auto-generated method stub
+	public List<MemberInformation> getMemberInformationByLastName(String lastName) throws MemberInformationException {
 		return memberInformationRepository.findByLastName(lastName);
 	}
+
+
 
 
 }

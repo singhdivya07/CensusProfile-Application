@@ -32,13 +32,21 @@ public class SwaggerUiWebMvcConfigurer implements WebMvcConfigurer {
         .resourceChain(false);
   }
 
+  /**
+   * This methods add the view to the controller
+   */
   //http://localhost:8081/springfox/swagger-ui/index.html
   @Override
   public void addViewControllers(ViewControllerRegistry registry) {
     registry.addViewController(baseUrl + "/swagger-ui/")
         .setViewName("forward:" + baseUrl + "/swagger-ui/index.html");
   }
-
+  
+/**
+ * Cross-Origin Resource Sharing (CORS) is a security 
+ * concept that allows restricting the resources implemented
+ *  in web browsers
+ */
   @Override
   public void addCorsMappings(CorsRegistry registry) {
     registry

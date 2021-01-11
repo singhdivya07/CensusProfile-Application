@@ -37,7 +37,6 @@ public class LoggerAspect {
 						joinPoint.getSignature().getName(), Arrays.toString(joinPoint.getArgs()));
 			}
 			try {
-				//explictly invoke joinpoint method
 				Object result = joinPoint.proceed();
 				if (log.isDebugEnabled()) {
 					if(joinPoint.getSignature().getName().equals("getCustomerById")) {

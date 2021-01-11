@@ -1,7 +1,7 @@
 package com.capgemini.census.exception;
 
 /**
- * 
+ * Exception class for Application.
  * @author HP
  *
  */

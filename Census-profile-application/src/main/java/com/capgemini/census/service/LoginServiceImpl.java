@@ -21,19 +21,14 @@ import com.capgemini.census.repository.LoginRepository;
  *
  */
 
-//@Service annotation is used to mark the class as a service provider
 @Service
 public class LoginServiceImpl implements LoginService {
 
-	// LoginServiceimpl should implement all the methods present in LoginService
-	// interface
-
-	@Autowired // To get a relation with User repository
+	@Autowired 
 	private LoginRepository loginRepository;
 
-	// **************//
-	/*
-	 * signin the page by Staff using StaffId and the password
+	/**
+	 * This method signs in into Application.
 	 */
 	@Override
 	public String signIn(User user) {
@@ -56,11 +51,9 @@ public class LoginServiceImpl implements LoginService {
 		}
 		return str;
 	}
-
-	// **************//
-	/*
-	 * signout the page by Staff using StaffId and the password
-	 */
+/**
+ * This method signs out from the application.
+ */
 	@Override
 	public String signOut(LogOutPayload User) {
 		String str = null;
@@ -77,12 +70,11 @@ public class LoginServiceImpl implements LoginService {
 		}
 		return str;
 	}
-
-
-	// **************//
-	/*
-	 * retest password
+	
+	/**
+	 * This method resets the password.
 	 */
+	
 	@Override
 	public String changePassword(User login, String new_password) {
 		String str = null;

@@ -23,10 +23,6 @@ import com.capgemini.census.entity.Relationship;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { CensusProfileApplication.class})
-//to use the same data source as your regular application 
-//i.e to run DataJpaTest with PostgreSQL. Without the below annotation 
-//and with only @DataJpaTest, testing framework configures a
-//in-memory database by default
 @AutoConfigureTestDatabase(replace=Replace.NONE)
 /*
  * The @DataJpaTest uses @Transactional under the hood. 
@@ -52,13 +48,13 @@ public class MemberInformationRepositoryTest {
 
 		entityManager.persistAndFlush(member1);
 
-		MemberInformation found = memberInformationRepository.findByFirstName(member1.getFirstName());
+		List<MemberInformation> found = memberInformationRepository.findByFirstName(member1.getFirstName());
 		assertThat(((MemberInformation) found).getFirstName()).isEqualTo(member1.getFirstName());
 	}
 
 	@Test
 	public void whenInvalidFirstName_thenReturnNull() {
-		MemberInformation fromDb =  memberInformationRepository.findByFirstName("doesNotExist");
+		List<MemberInformation> fromDb =  memberInformationRepository.findByFirstName("doesNotExist");
 		assertThat(fromDb).isNull();
 	}
 
@@ -70,13 +66,13 @@ public class MemberInformationRepositoryTest {
 
 		entityManager.persistAndFlush(member1);
 
-		MemberInformation found = memberInformationRepository.findByLastName(member1.getLastName());
+		List<MemberInformation> found = memberInformationRepository.findByLastName(member1.getLastName());
 		assertThat(((MemberInformation) found).getLastName()).isEqualTo(member1.getLastName());
 	}
 
 	@Test
 	public void whenInvalidLastName_thenReturnNull() {
-		MemberInformation fromDb =  memberInformationRepository.findByLastName("doesNotExist");
+		List<MemberInformation> fromDb =  memberInformationRepository.findByLastName("doesNotExist");
 		assertThat(fromDb).isNull();
 	}
 
